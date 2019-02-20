@@ -12,15 +12,17 @@ r:
   - release
 
 env:
+  global: 
+# don't treat missing suggested packages as error
+  - _R_CHECK_FORCE_SUGGESTS_=false
   
 before_install:
 # make sure R pkgs are upt-to-date
   - Rscript -e 'update.packages(ask = FALSE)'
-
 # work around temporary travis + R 3.5 bug
 r_packages: devtools  
 
-# temporary: needed for plotly input testing in shiny 
+# temporary: needed for plotly input testing in shiny
 r_github_packages: 
   - rstudio/shinytest
 #lintr for static R code analysis and coding style adherence
